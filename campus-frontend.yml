@@ -4,5 +4,5 @@ spring:
   min-passwd-length: 8
 
 backend:
-  server: 192.168.1.184
+  server: localhost
   port: 8999
