@@ -1,63 +1,22 @@
----
 spring:
   profiles: default
-  
-  salesforce:
-    username: celticps@tss.com.pe.celticapp
-    password: CelticTest201685PiDHM58IM4059wd2QyfySa
-    loginUrl: https://test.salesforce.com
-    grantService: /services/oauth2/token?grant_type=password
-    clientId: 3MVG9Vik22TUgUpgzQsAzVNCneOIprOFJk.R0zkDyvAinUje1HWk_vectj1ZT.TPaccbtismy2sRzIX2WO.XR
-    clientSecret: 6712902007434263278
-    restEnpoint: /services/data
-    version: /v32.0
-    
-    
-  
-  doe:
-    cron-frequency: 0 50 * * * ?
-    
-    routing:
-      cron-frequency: 0 0/3 * * * ?
-  
-  pcmiler:
-    url: http://d8mvp-pro1:8080/RatingTest/Support/SendToApp.jsp
-    tmsUrlBase: http://tms-int/pcmiler/pcm
-    srvUrlBase: http://LWAPCMD1:8180/pcmiler/pcm
-    intervalMin: 2
-    methodPoolSize: 100
-    methodCallPcMiler: SERVICE
-    quantityDrayRate: 5000
-
-  eia:
-    apikey: 421BB407A7950C41AF5106955DB3E533
-    url: http://api.eia.gov/series/?api_key=
-    paramout: "&out=json"
-    paramserie: "&series_id="
 
   mail:
-    sender: celticps@tss.com.pe
-    fromIP: 192.168.1.184
-    host: 192.168.0.10
-    username: celticps@tss.com.pe
-    password: celticps2016
-    port: 587
-    properties:
-      mail:
-        smtp:
-          auth: false
-          starttls.enable: false
+    host: smtp.gmail.com
+    port: 465
+    sender: campus@joedayz.pe
+    username: campus@joedayz.pe
+    password: ArrozConAngular2
+    fromIP: campus.joedayz.pe
 
   datasource:
-    driverClassName: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@192.168.1.197:1521/pdborcl.tss.com.pe
-    username: celtic_uat2
-    password: tssuser
+    url: jdbc:mysql://localhost/api
+    username: root
+    password: joedayz
     testOnBorrow: true
     removeAbandonedTimeout: 1800
     removeAbandoned: true
-    validationQuery:  alter SESSION  set CURRENT_SCHEMA = celtic_uat2
-    #validationQuery:  select sysdate from dual
+    validationQuery: SELECT 1 FROM DUAL
     logAbandoned: true
     minEvictableIdleTimeMillis: 60000
     defaultReadOnly: false
@@ -66,26 +25,69 @@ spring:
     minIdle: 0
     maxActive: 50
     initialSize: 1
-    test-on-connect: true
 
   jpa:
     #database-platform: org.hibernate.dialect.Oracle10gDialect
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
     #generate-ddl= true.hibernate.ejb.interceptor=MyInterceptorClassName
 
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
 
 
 
     properties:
       hibernate:
-          order_inserts: true
-          order_updates: true
           ejb:
-            interceptor: com.celticintl.pricing.jpa.PricingEntityInterceptorImpl
+            interceptor: pe.joedayz.api.jpa.ApiEntityInterceptorImpl
           jdbc:
-            batch_size: 400
-            batch_versioned_data: true
+            batch_size: 20
+
+
+---
+spring:
+  profiles: joeint
+
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    sender: campus@joedayz.pe
+    username: campus@joedayz.pe
+    password: ArrozConAngular2
+    fromIP: campus.joedayz.pe
+
+  datasource:
+    url: jdbc:mysql://localhost/joecampus_api
+    username: joecampus_api
+    password: Dr3cVhcAB!d#6WqU
+    testOnBorrow: true
+    removeAbandonedTimeout: 1800
+    removeAbandoned: true
+    validationQuery: SELECT 1 FROM DUAL
+    logAbandoned: true
+    minEvictableIdleTimeMillis: 60000
+    defaultReadOnly: false
+    maxWait: 60000
+    maxIdle: 1
+    minIdle: 0
+    maxActive: 50
+    initialSize: 1
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
+
+
+
+    properties:
+      hibernate:
+          ejb:
+            interceptor: pe.joedayz.api.jpa.ApiEntityInterceptorImpl
+          jdbc:
+            batch_size: 20
