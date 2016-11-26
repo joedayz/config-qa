@@ -10,7 +10,7 @@ spring:
     fromIP: campus.joedayz.pe
 
   datasource:
-    url: jdbc:mysql://192.168.1.34/api
+    url: jdbc:mysql://localhost/api
     username: root
     password: joedayz
     testOnBorrow: true
