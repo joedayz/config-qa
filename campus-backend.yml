@@ -12,6 +12,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost/api
     username: root
+    #clave temporal
     password: Miguelxt914
     testOnBorrow: true
     removeAbandonedTimeout: 1800
