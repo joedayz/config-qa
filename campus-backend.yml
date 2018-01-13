@@ -1,3 +1,7 @@
+server:
+  port: ${vcap.application.port:8999}
+
+
 spring:
   profiles: default
 
